@@ -1,14 +1,28 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Head from 'next/head';
+import styles from '../styles/Home.module.css';
+import sanity from "../lib/sanity";
 
-export default function Home() {
+const query = `*[_type == 'character']{ 
+  _id, name, 
+  appearance[]->{title}
+} 
+`;
+
+export const getStaticProps = async () => {
+  const characters = await sanity.fetch(query);
+  return {
+    props: { characters }, // will be passed to the page component as props
+  };
+};
+
+export default function Home({ characters }) {
   return (
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      {console.log(characters)}
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
@@ -61,5 +75,5 @@ export default function Home() {
         </a>
       </footer>
     </div>
-  )
+  );
 }
