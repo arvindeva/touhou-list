@@ -29,7 +29,6 @@ export default function Home(props) {
           </div>
         ))}
       </main>
-
       <footer></footer>
     </div>
   );

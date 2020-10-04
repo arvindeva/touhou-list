@@ -1,6 +1,6 @@
 import sanity from '../lib/sanity';
 
-const GET_CHARACTERS = `*[_type == 'character']{ 
+const GET_CHARACTERS = `*[_type == 'character'] | order(name asc) { 
   _id, name, slug,
   appearance[]->{title}
 } 
@@ -29,10 +29,7 @@ export async function getAllCharacterSlugs() {
 
 export async function getSortedCharacters() {
   const characters = await sanity.fetch(GET_CHARACTERS);
-  const sortedCharacters = characters
-    .slice()
-    .sort((a, b) => (a.name > b.name ? 1 : -1));
-  return sortedCharacters;
+  return characters;
 }
 
 export async function getCharacterData(slug) {
