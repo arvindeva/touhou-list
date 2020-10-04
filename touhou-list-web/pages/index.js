@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import styled from 'styled-components';
 
 import { getSortedCharacters } from '../lib/characters';
 
@@ -10,9 +11,11 @@ export const getStaticProps = async () => {
   };
 };
 
+const StyledHome = styled.div``;
+
 export default function Home(props) {
   return (
-    <div>
+    <StyledHome>
       <Head>
         <title>Touhou List</title>
         <link rel="icon" href="/favicon.ico" />
@@ -30,6 +33,6 @@ export default function Home(props) {
         ))}
       </main>
       <footer></footer>
-    </div>
+    </StyledHome>
   );
 }
