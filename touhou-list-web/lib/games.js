@@ -6,7 +6,8 @@ const GET_GAMES = `*[_type == 'game'] | order(number asc) {
 `;
 
 const GET_GAME_BY_SLUG = `*[_type == 'game' && slug.current == $slug] { 
-  _id, title, slug, number
+  _id, title, slug, number,
+  "imageUrl": cover.asset->url
 } 
 `;
 

@@ -16,6 +16,24 @@ export default {
       type: 'number',
     },
     {
+      title: 'Cover',
+      name: 'cover',
+      type: 'image',
+      options: {
+        hotspot: false, // <-- Defaults to false
+      },
+      fields: [
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          options: {
+            isHighlighted: true, // <-- make this field easily accessible
+          },
+        },
+      ],
+    },
+    {
       title: 'Slug',
       name: 'slug',
       type: 'slug',
