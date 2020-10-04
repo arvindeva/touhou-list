@@ -11,6 +11,11 @@ export default {
       type: 'string',
     },
     {
+      title: 'Number',
+      name: 'number',
+      type: 'number',
+    },
+    {
       title: 'Slug',
       name: 'slug',
       type: 'slug',
@@ -21,6 +26,18 @@ export default {
         slugify: (input) =>
           input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
       },
+    },
+  ],
+  orderings: [
+    {
+      title: 'Title',
+      name: 'titleAsc',
+      by: [{ field: 'title', direction: 'asc' }],
+    },
+    {
+      title: 'Number',
+      name: 'numberAsc',
+      by: [{ field: 'number', direction: 'asc' }],
     },
   ],
 };
