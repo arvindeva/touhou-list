@@ -12,7 +12,6 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params }) => {
   const character = await getCharacterData(params.slug);
-  console.log(character);
   return {
     props: {
       slug: params.slug,
@@ -27,10 +26,13 @@ export default function Character({ character }) {
       <h1>Name: {character.name}</h1>
       <p>ID: {character._id}</p>
       <h3>Appeared In:</h3>
-      {character.appearance.map((game) => {
-        return <p key={game._id}>{game.title}</p>;
-      })}
-      {console.log(character)}
+      {character.appearance ? (
+        character.appearance.map((game) => {
+          return <p key={game._id}>{game.title}</p>;
+        })
+      ) : (
+        <div>Appearance not found.</div>
+      )}
     </div>
   );
 }

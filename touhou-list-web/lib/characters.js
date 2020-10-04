@@ -1,53 +1,41 @@
 import sanity from '../lib/sanity';
-import { nameToSlug, slugToName } from '../utils/slug';
 
 const GET_CHARACTERS = `*[_type == 'character']{ 
-  _id, name, 
+  _id, name, slug,
   appearance[]->{title}
 } 
 `;
 
-const GET_CHARACTER_BY_NAME = `*[_type == 'character' && name == $name]{ 
-  _id, name, 
+const GET_CHARACTER_BY_SLUG = `*[_type == 'character' && slug.current == $slug]{ 
+  _id, name, slug,
   appearance[]->{_id, title}
 } 
 `;
 
 export async function getAllCharacterSlugs() {
   const characters = await sanity.fetch(GET_CHARACTERS);
-  const slugs = characters.map((character) => {
-    return nameToSlug(character.name);
-  });
+  const slugs = characters.map((character) => character.slug.current);
   // Returns an array of objects consisting id params:
   // [{ params: { slug: ''} }, { params: { slug: ''} }]
   const paramsArray = slugs.map((slug) => {
     return {
       params: {
-        slug: slug,
+        slug,
       },
     };
   });
   return paramsArray;
 }
 
-export async function getSortedCharactersWithSlugs() {
+export async function getSortedCharacters() {
   const characters = await sanity.fetch(GET_CHARACTERS);
-
   const sortedCharacters = characters
     .slice()
     .sort((a, b) => (a.name > b.name ? 1 : -1));
-
-  const sortedCharactersWithSlug = sortedCharacters.map((character) => {
-    return {
-      ...character,
-      slug: nameToSlug(character.name),
-    };
-  });
-  return sortedCharactersWithSlug;
+  return sortedCharacters;
 }
 
 export async function getCharacterData(slug) {
-  const name = slugToName(slug);
-  const character = await sanity.fetch(GET_CHARACTER_BY_NAME, { name: name });
+  const character = await sanity.fetch(GET_CHARACTER_BY_SLUG, { slug });
   return character[0];
 }

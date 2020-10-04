@@ -1,12 +1,12 @@
 import Head from 'next/head';
 import Link from 'next/link';
 
-import { getSortedCharactersWithSlugs } from '../lib/characters';
+import { getSortedCharacters } from '../lib/characters';
 
 export const getStaticProps = async () => {
-  const sortedCharactersWithSlug = await getSortedCharactersWithSlugs();
+  const sortedCharacters = await getSortedCharacters();
   return {
-    props: { sortedCharactersWithSlug }, // will be passed to the page component as props
+    props: { sortedCharacters }, // will be passed to the page component as props
   };
 };
 
@@ -18,11 +18,11 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {props.sortedCharactersWithSlug.map((character) => (
+        {props.sortedCharacters.map((character) => (
           <div key={character._id}>
             <Link
               href={'/characters/[slug]'}
-              as={`/characters/${character.slug}`}
+              as={`/characters/${character.slug.current}`}
             >
               <a>{character.name}</a>
             </Link>
