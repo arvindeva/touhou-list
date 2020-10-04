@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 
 import { getAllCharacterSlugs, getCharacterData } from '../../lib/characters';
 
@@ -23,9 +24,8 @@ export const getStaticProps = async ({ params }) => {
 export default function Character({ character }) {
   return (
     <div>
-      <h1>Name: {character.name}</h1>
-      <p>ID: {character._id}</p>
-      <h3>Appeared In:</h3>
+      <h1>{character.name}</h1>
+      <h3>Appearance</h3>
       {character.appearance ? (
         character.appearance.map((game) => {
           return <p key={game._id}>{game.title}</p>;
@@ -33,6 +33,9 @@ export default function Character({ character }) {
       ) : (
         <div>Appearance not found.</div>
       )}
+      <Link href="/">
+        <a>Back</a>
+      </Link>
     </div>
   );
 }
