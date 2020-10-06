@@ -1,31 +1,37 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import urlFor from '../../../utils/urlFor';
 
 const StyledCard = styled.div`
-  background-color: ${(props) => props.theme.colors.darkBlue};
-  padding: 2rem 1rem;
   min-width: 200px;
   border-radius: 0.5rem;
   cursor: pointer;
   text-align: center;
+  overflow: hidden;
   &:hover {
-    transform: scale(1.05);
-    transition: transform 0.05s, background-color 0.5s;
-    background-color: ${(props) => props.theme.colors.accent};
-    .image {
-      border: 1px solid ${(props) => props.theme.colors.darkBlue};
+    transform: translateY(-0.5rem);
+    transition: transform 0.2s;
+    .content {
+      background-color: ${(props) => props.theme.colors.blue};
+      transition: transform 0.2s, background-color 0.2s;
     }
   }
-  .image {
-    width: 130px;
-    height: 130px;
-    background-color: grey;
-    margin: 0 auto;
-    margin-bottom: 2rem;
-    border-radius: 50%;
-    border: 1px solid ${(props) => props.theme.colors.accent};
+  .image-wrapper {
+    img {
+      border-radius: 0.5rem 0.5rem 0 0;
+      width: 100%;
+      transform: translateY(3px);
+    }
   }
   .content {
+    padding: 2rem 1rem;
+    background-color: ${(props) => props.theme.colors.darkBlue};
+  }
+  .placeholder {
+    position: relative;
+    width: 250px;
+    height: 0;
+    padding-bottom: 20%;
   }
 `;
 
@@ -37,7 +43,16 @@ const Card = ({ character }) => {
     >
       <a>
         <StyledCard>
-          <div className="image"></div>
+          <div className="image-wrapper">
+            {character.image ? (
+              <img
+                src={urlFor(character.image).width(400).height(400).url()}
+                alt="character cover"
+              />
+            ) : (
+              <img src="/grey.png" alt="character cover" />
+            )}
+          </div>
           <div className="content">{character.name} </div>
         </StyledCard>
       </a>

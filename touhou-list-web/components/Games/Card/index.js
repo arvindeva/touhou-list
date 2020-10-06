@@ -5,7 +5,8 @@ import urlFor from '../../../utils/urlFor';
 
 const StyledCard = styled.div`
   background-color: ${(props) => props.theme.colors.darkBlue};
-  padding: 2rem 1rem;
+  padding: 1rem;
+  padding-bottom: 2rem;
   min-width: 200px;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -18,6 +19,10 @@ const StyledCard = styled.div`
   }
   .image-wrapper {
     margin-bottom: 2rem;
+    img {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
   }
 `;
 
@@ -28,7 +33,7 @@ const Card = ({ game }) => {
         <StyledCard>
           <div className="image-wrapper">
             <img
-              src={urlFor(game.imageUrl).width(350).height(350)}
+              src={urlFor(game.imageUrl).width(350).height(350).url()}
               alt="game cover"
             />
           </div>

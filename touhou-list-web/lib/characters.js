@@ -2,13 +2,15 @@ import sanity from '../lib/sanity';
 
 const GET_CHARACTERS = `*[_type == 'character'] | order(name asc) { 
   _id, name, slug,
-  appearance[]->{title}
+  appearance[]->{title},
+  image
 } 
 `;
 
 const GET_CHARACTER_BY_SLUG = `*[_type == 'character' && slug.current == $slug]{ 
   _id, name, slug,
-  appearance[]->{_id, title}
+  appearance[]->{_id, title},
+  "imageUrl": image.asset->url
 } 
 `;
 

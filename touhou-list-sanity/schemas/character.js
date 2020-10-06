@@ -11,6 +11,24 @@ export default {
       type: 'string',
     },
     {
+      title: 'Image',
+      name: 'image',
+      type: 'image',
+      options: {
+        hotspot: true, // <-- Defaults to false
+      },
+      fields: [
+        {
+          name: 'caption',
+          type: 'string',
+          title: 'Caption',
+          options: {
+            isHighlighted: true, // <-- make this field easily accessible
+          },
+        },
+      ],
+    },
+    {
       title: 'Appearance',
       name: 'appearance',
       type: 'array',
