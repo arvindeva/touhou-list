@@ -9,6 +9,8 @@ import Heading from '../components/Heading';
 import Section from '../components/Section';
 import CharacterCard from '../components/Characters/Card';
 import CharactersGrid from '../components/Characters/Grid';
+import GamesCard from '../components/Games/Card';
+import GamesGrid from '../components/Games/Grid';
 
 export const getStaticProps = async () => {
   const characters = await getSortedCharacters();
@@ -42,14 +44,11 @@ export default function Home(props) {
         </Section>
         <Section>
           <Heading>Official Games</Heading>
-
-          {props.games.map((game) => (
-            <div key={game._id}>
-              <Link href={'/games/[slug]'} as={`/games/${game.slug.current}`}>
-                <a>{`Touhou ${game.number}: ${game.title}`}</a>
-              </Link>
-            </div>
-          ))}
+          <GamesGrid>
+            {props.games.map((game) => (
+              <GamesCard key={game._id} game={game} />
+            ))}
+          </GamesGrid>
         </Section>
       </main>
       <footer></footer>

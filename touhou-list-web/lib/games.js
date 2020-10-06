@@ -1,7 +1,8 @@
 import sanity from '../lib/sanity';
 
 const GET_GAMES = `*[_type == 'game'] | order(number asc) { 
-  _id, title, slug, number
+  _id, title, slug, number,
+  "imageUrl": cover.asset->url
 } 
 `;
 
