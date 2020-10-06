@@ -8,6 +8,9 @@ const StyledCard = styled.div`
   cursor: pointer;
   text-align: center;
   overflow: hidden;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
   &:hover {
     transform: translateY(-0.5rem);
     transition: transform 0.2s;
@@ -40,9 +43,9 @@ const StyledCard = styled.div`
 
 const Card = ({ game }) => {
   return (
-    <Link href={'/games/[slug]'} as={`/games/${game.slug.current}`}>
-      <a>
-        <StyledCard>
+    <StyledCard>
+      <Link href={'/games/[slug]'} as={`/games/${game.slug.current}`}>
+        <a>
           <div className="image-wrapper">
             <img
               src={urlFor(game.imageUrl).width(400).height(400).url()}
@@ -52,9 +55,9 @@ const Card = ({ game }) => {
           <div className="content">
             <h3 className="title">{`Touhou ${game.number}: ${game.title}`}</h3>
           </div>
-        </StyledCard>
-      </a>
-    </Link>
+        </a>
+      </Link>
+    </StyledCard>
   );
 };
 

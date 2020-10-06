@@ -7,6 +7,8 @@ const StyledCard = styled.div`
   cursor: pointer;
   text-align: center;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
   &:hover {
     transform: translateY(-0.5rem);
     transition: transform 0.2s;
@@ -33,12 +35,12 @@ const StyledCard = styled.div`
 
 const Card = ({ character }) => {
   return (
-    <Link
-      href={'/characters/[slug]'}
-      as={`/characters/${character.slug.current}`}
-    >
-      <a>
-        <StyledCard>
+    <StyledCard>
+      <Link
+        href={'/characters/[slug]'}
+        as={`/characters/${character.slug.current}`}
+      >
+        <a>
           <div className="image-wrapper">
             {character.image ? (
               <img
@@ -54,9 +56,9 @@ const Card = ({ character }) => {
             )}
           </div>
           <div className="content">{character.name} </div>
-        </StyledCard>
-      </a>
-    </Link>
+        </a>
+      </Link>
+    </StyledCard>
   );
 };
 
