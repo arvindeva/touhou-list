@@ -5,6 +5,10 @@ import styled from 'styled-components';
 import { getSortedCharacters } from '../lib/characters';
 import { getSortedGames } from '../lib/games';
 
+import Heading from '../components/Heading';
+import CharacterCard from '../components/Characters/Card';
+import CharactersGrid from '../components/Characters/Grid';
+
 export const getStaticProps = async () => {
   const characters = await getSortedCharacters();
   const games = await getSortedGames();
@@ -13,7 +17,11 @@ export const getStaticProps = async () => {
   };
 };
 
-const StyledHome = styled.div``;
+const StyledHome = styled.div`
+  padding: 1rem;
+  background-color: ${(props) => props.theme.colors.navy};
+  color: white;
+`;
 
 export default function Home(props) {
   return (
@@ -23,18 +31,13 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h3>Characters</h3>
-        {props.characters.map((character) => (
-          <div key={character._id}>
-            <Link
-              href={'/characters/[slug]'}
-              as={`/characters/${character.slug.current}`}
-            >
-              <a>{character.name}</a>
-            </Link>
-          </div>
-        ))}
-        <h3>Official Games</h3>
+        <Heading>Characters</Heading>
+        <CharactersGrid>
+          {props.characters.map((character) => (
+            <CharacterCard key={character._id} character={character} />
+          ))}
+        </CharactersGrid>
+        <Heading>Official Games</Heading>
         {props.games.map((game) => (
           <div key={game._id}>
             <Link href={'/games/[slug]'} as={`/games/${game.slug.current}`}>
