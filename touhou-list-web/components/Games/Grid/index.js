@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  grid-gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 1rem 1rem;
+  justify-items: center;
 `;
 
 const Grid = ({ children }) => {

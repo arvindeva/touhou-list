@@ -4,24 +4,36 @@ import Link from 'next/link';
 import urlFor from '../../../utils/urlFor';
 
 const StyledCard = styled.div`
-  background-color: ${(props) => props.theme.colors.darkBlue};
-  padding: 1rem;
-  padding-bottom: 2rem;
-  min-width: 200px;
   border-radius: 0.5rem;
   cursor: pointer;
   text-align: center;
-  transition: transform 0.05s, background-color 0.05s;
+  overflow: hidden;
   &:hover {
-    transform: scale(1.033) translateY(-0.5rem);
-    transition: transform 0.05s, background-color 0.05s;
-    background-color: ${(props) => props.theme.colors.blue};
+    transform: translateY(-0.5rem);
+    transition: transform 0.2s;
+    .content {
+      background-color: ${(props) => props.theme.colors.blue};
+      transition: transform 0.2s, background-color 0.2s;
+    }
   }
   .image-wrapper {
-    margin-bottom: 2rem;
     img {
+      border-radius: 0.5rem 0.5rem 0 0;
       width: 100%;
-      border-radius: 0.5rem;
+      transform: translateY(3px);
+    }
+    .placeholder {
+      width: 500px;
+    }
+  }
+  .content {
+    padding: 2rem 1rem;
+    background-color: ${(props) => props.theme.colors.darkBlue};
+    display: flex;
+    align-items: center;
+    height: 8rem;
+    .title {
+      margin: 0 auto;
     }
   }
 `;
@@ -33,11 +45,13 @@ const Card = ({ game }) => {
         <StyledCard>
           <div className="image-wrapper">
             <img
-              src={urlFor(game.imageUrl).width(350).height(350).url()}
+              src={urlFor(game.imageUrl).width(400).height(400).url()}
               alt="game cover"
             />
           </div>
-          <div className="content">{`Touhou ${game.number}: ${game.title}`}</div>
+          <div className="content">
+            <h3 className="title">{`Touhou ${game.number}: ${game.title}`}</h3>
+          </div>
         </StyledCard>
       </a>
     </Link>

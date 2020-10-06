@@ -3,7 +3,6 @@ import Link from 'next/link';
 import urlFor from '../../../utils/urlFor';
 
 const StyledCard = styled.div`
-  min-width: 200px;
   border-radius: 0.5rem;
   cursor: pointer;
   text-align: center;
@@ -22,16 +21,13 @@ const StyledCard = styled.div`
       width: 100%;
       transform: translateY(3px);
     }
+    .placeholder {
+      width: 400px;
+    }
   }
   .content {
     padding: 2rem 1rem;
     background-color: ${(props) => props.theme.colors.darkBlue};
-  }
-  .placeholder {
-    position: relative;
-    width: 250px;
-    height: 0;
-    padding-bottom: 20%;
   }
 `;
 
@@ -50,7 +46,11 @@ const Card = ({ character }) => {
                 alt="character cover"
               />
             ) : (
-              <img src="/grey.png" alt="character cover" />
+              <img
+                src="/grey.png"
+                className="placeholder"
+                alt="character cover"
+              />
             )}
           </div>
           <div className="content">{character.name} </div>
