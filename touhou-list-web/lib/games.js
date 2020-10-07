@@ -18,6 +18,13 @@ const GET_GAMES = `*[_type == 'game'] | order(number asc) {
 
 const GET_GAME_BY_SLUG = `*[_type == 'game' && slug.current == $slug] { 
   _id, title, slug, number,
+  "relatedCharacters": *[_type=='character' && references(^._id)]{
+  	...,
+  	appearances[] {
+       game->,
+       as[]
+		}
+	},
   "imageUrl": cover.asset->url,
   "imageMetadata": cover.asset->metadata{
 		lqip,
