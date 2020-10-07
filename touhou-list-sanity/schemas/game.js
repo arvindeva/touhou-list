@@ -21,15 +21,14 @@ export default {
       type: 'image',
       options: {
         hotspot: false, // <-- Defaults to false
+        metadata: ['location', 'palette', 'lqip', 'dimensions'],
       },
       fields: [
         {
           name: 'caption',
           type: 'string',
           title: 'Caption',
-          options: {
-            isHighlighted: true, // <-- make this field easily accessible
-          },
+          isHighlighted: true, // <-- make this field easily accessible
         },
       ],
     },

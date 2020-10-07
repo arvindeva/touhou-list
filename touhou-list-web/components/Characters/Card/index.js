@@ -10,19 +10,19 @@ const StyledCard = styled.div`
   width: 100%;
   height: 100%;
   &:hover {
-    transform: translateY(-0.5rem);
-    transition: transform 0.2s;
     .content {
       background-color: ${(props) => props.theme.colors.blue};
-      transition: transform 0.2s, background-color 0.2s;
+      transition: background-color 0.2s;
     }
   }
   .image-wrapper {
-    img {
+    /* img {
       border-radius: 0.5rem 0.5rem 0 0;
+      object-fit: cover;
       width: 100%;
+      height: 350px;
       transform: translateY(3px);
-    }
+    } */
     .placeholder {
       width: 400px;
     }
@@ -44,8 +44,11 @@ const Card = ({ character }) => {
           <div className="image-wrapper">
             {character.image ? (
               <img
-                src={urlFor(character.image).width(400).height(400).url()}
-                alt="character cover"
+                src={urlFor(character.image)
+                  .auto('format')
+                  .size(350, 350)
+                  .url()}
+                alt={character.name}
               />
             ) : (
               <img

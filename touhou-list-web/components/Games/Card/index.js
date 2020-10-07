@@ -12,18 +12,16 @@ const StyledCard = styled.div`
   max-width: 400px;
   height: 100%;
   &:hover {
-    transform: translateY(-0.5rem);
-    transition: transform 0.2s;
     .content {
       background-color: ${(props) => props.theme.colors.blue};
-      transition: transform 0.2s, background-color 0.2s;
+      transition: background-color 0.2s;
     }
   }
   .image-wrapper {
     img {
       border-radius: 0.5rem 0.5rem 0 0;
       width: 100%;
-      transform: translateY(3px);
+      /* transform: translateY(3px); */
     }
     .placeholder {
       width: 500px;
@@ -47,10 +45,18 @@ const Card = ({ game }) => {
       <Link href={'/games/[slug]'} as={`/games/${game.slug.current}`}>
         <a>
           <div className="image-wrapper">
-            <img
-              src={urlFor(game.imageUrl).width(400).height(400).url()}
-              alt="game cover"
-            />
+            <figure
+              style={{
+                backgroundImage: `url(${game.imageMetadata.lqip})`,
+                backgroundSize: `cover`,
+                margin: 0,
+              }}
+            >
+              <img
+                src={urlFor(game.imageUrl).width(400).height(400).url()}
+                alt="game cover"
+              />
+            </figure>
           </div>
           <div className="content">
             <h3 className="title">{`Touhou ${game.number}: ${game.title}`}</h3>

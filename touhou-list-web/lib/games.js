@@ -2,13 +2,33 @@ import sanity from '../lib/sanity';
 
 const GET_GAMES = `*[_type == 'game'] | order(number asc) { 
   _id, title, slug, number,
-  "imageUrl": cover.asset->url
+  "imageUrl": cover.asset->url,
+  "imageMetadata": cover.asset->metadata{
+		lqip,
+    dimensions,
+    palette {
+      dominant {
+        background,
+        foreground
+    	}
+		}
+	}
 } 
 `;
 
 const GET_GAME_BY_SLUG = `*[_type == 'game' && slug.current == $slug] { 
   _id, title, slug, number,
-  "imageUrl": cover.asset->url
+  "imageUrl": cover.asset->url,
+  "imageMetadata": cover.asset->metadata{
+		lqip,
+    dimensions,
+    palette {
+      dominant {
+        background,
+        foreground
+    	}
+		}
+	}
 } 
 `;
 

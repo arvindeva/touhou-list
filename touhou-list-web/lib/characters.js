@@ -3,7 +3,7 @@ import sanity from '../lib/sanity';
 const GET_CHARACTERS = `*[_type == 'character'] | order(name asc) { 
   _id, name, slug,
   appearance[]->{title},
-  image
+  image,
 } 
 `;
 
