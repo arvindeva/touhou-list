@@ -16,13 +16,13 @@ const StyledCard = styled.div`
     }
   }
   .image-wrapper {
-    /* img {
+    img {
       border-radius: 0.5rem 0.5rem 0 0;
       object-fit: cover;
       width: 100%;
       height: 350px;
       transform: translateY(3px);
-    } */
+    }
     .placeholder {
       width: 400px;
     }

@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 import { getSortedCharacters } from '../lib/characters';
@@ -7,6 +6,7 @@ import { getSortedGames } from '../lib/games';
 
 import Heading from '../components/Heading';
 import Section from '../components/Section';
+import Footer from '../components/Footer';
 import CharacterCard from '../components/Characters/Card';
 import CharactersGrid from '../components/Characters/Grid';
 import GamesCard from '../components/Games/Card';
@@ -51,7 +51,7 @@ export default function Home(props) {
           </GamesGrid>
         </Section>
       </main>
-      <footer></footer>
+      <Footer />
     </StyledHome>
   );
 }

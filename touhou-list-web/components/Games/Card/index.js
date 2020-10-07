@@ -21,7 +21,6 @@ const StyledCard = styled.div`
     img {
       border-radius: 0.5rem 0.5rem 0 0;
       width: 100%;
-      /* transform: translateY(3px); */
     }
     .placeholder {
       width: 500px;

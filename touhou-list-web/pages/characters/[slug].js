@@ -29,16 +29,38 @@ export default function Character({ character }) {
       </Head>
       <div>
         <h1>{character.name}</h1>
+        <img src={character.imageUrl} alt={character.name} />
         <h3>Appearance</h3>
-        {character.appearance ? (
-          character.appearance.map((game) => {
-            return <p key={game._id}>{game.title}</p>;
+        {character.appearances ? (
+          character.appearances.map((appearance) => {
+            return (
+              <div key={appearance.game._id} style={{ marginBottom: '2rem' }}>
+                <img
+                  src={appearance.game.cover.asset.url}
+                  alt={appearance.game.title}
+                  style={{ width: '150px' }}
+                />
+                <Link
+                  href={'/games/[slug]'}
+                  as={`/games/${appearance.game.slug.current}`}
+                >
+                  <a>
+                    <h3>{appearance.game.title}</h3>
+                  </a>
+                </Link>
+                <ul>
+                  {appearance.as.map((role) => (
+                    <p key={role}>{role}</p>
+                  ))}
+                </ul>
+              </div>
+            );
           })
         ) : (
           <div>Appearance not found.</div>
         )}
         <Link href="/">
-          <a>Back</a>
+          <a>Home</a>
         </Link>
       </div>
     </>

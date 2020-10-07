@@ -1,6 +1,6 @@
 import sanity from '../lib/sanity';
 
-const GET_CHARACTERS = `*[_type == 'character'] | order(name asc) { 
+const GET_CHARACTERS = `*[_type == 'character'] | order(name asc){ 
   _id, name, slug,
   appearance[]->{title},
   image,
@@ -9,7 +9,17 @@ const GET_CHARACTERS = `*[_type == 'character'] | order(name asc) {
 
 const GET_CHARACTER_BY_SLUG = `*[_type == 'character' && slug.current == $slug]{ 
   _id, name, slug,
-  appearance[]->{_id, title},
+  appearances[] {
+    as[],
+		game-> {
+      _id,
+      title,
+      cover {
+      	asset->
+      },
+      slug,
+    }
+  },
   "imageUrl": image.asset->url
 } 
 `;
