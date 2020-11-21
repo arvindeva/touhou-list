@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import urlFor from '../../../utils/urlFor';
 
@@ -51,9 +52,11 @@ const Card = ({ game }) => {
                 margin: 0,
               }}
             >
-              <img
+              <Image
                 src={urlFor(game.imageUrl).width(400).height(400).url()}
                 alt="game cover"
+                width="350"
+                height="350"
               />
             </figure>
           </div>

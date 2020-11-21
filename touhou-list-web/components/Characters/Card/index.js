@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
+
 import urlFor from '../../../utils/urlFor';
 
 const StyledCard = styled.div`
@@ -43,18 +45,22 @@ const Card = ({ character }) => {
         <a>
           <div className="image-wrapper">
             {character.image ? (
-              <img
+              <Image
                 src={urlFor(character.image)
                   .auto('format')
                   .size(350, 350)
                   .url()}
                 alt={character.name}
+                width="350"
+                height="350"
               />
             ) : (
-              <img
+              <Image
                 src="/grey.png"
                 className="placeholder"
                 alt="character cover"
+                width="350"
+                height="350"
               />
             )}
           </div>

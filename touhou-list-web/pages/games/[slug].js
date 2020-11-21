@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { getAllGameSlugs, getGameData } from '../../lib/games';
 import urlFor from '../../utils/urlFor';
@@ -58,7 +59,13 @@ export default function Game({ game, newGame }) {
         <title>{game.title}</title>
       </Head>
       <div>
-        {game.imageUrl && <img src={urlFor(game.imageUrl).width(500).url()} />}
+        {game.imageUrl && (
+          <Image
+            src={urlFor(game.imageUrl).width(500).url()}
+            width="350"
+            height="350"
+          />
+        )}
         <h1>{game.title}</h1>
         <h1>Characters:</h1>
         {renderCharacters}

@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 
 import { getAllCharacterSlugs, getCharacterData } from '../../lib/characters';
 
@@ -29,16 +30,18 @@ export default function Character({ character }) {
       </Head>
       <div>
         <h1>{character.name}</h1>
-        <img src={character.imageUrl} alt={character.name} />
+        <Image src={character.imageUrl} alt={character.name} />
         <h3>Appearance</h3>
         {character.appearances ? (
           character.appearances.map((appearance) => {
             return (
               <div key={appearance.game._id} style={{ marginBottom: '2rem' }}>
-                <img
+                <Image
                   src={appearance.game.cover.asset.url}
                   alt={appearance.game.title}
                   style={{ width: '150px' }}
+                  width="350"
+                  height="350"
                 />
                 <Link
                   href={'/games/[slug]'}
